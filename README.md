@@ -1,1 +1,1 @@
-# frogger
+# Frogger game project
