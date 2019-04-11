@@ -26,7 +26,7 @@ class obstaclesRow(Group):
             return self.group.sprites()[-1].rect.right + s.square_constant < self.starting_x
         else:
             return self.group.sprites()[-1].rect.left > s.square_constant
-    def update(self):
+    def update(self,dt):
         if len(self.group.sprites()) == 0:
             if random.random() < self.frequency:
                 self.group.add(Obstacle(s.width if self.direction == 'left' else -self.width,self.row, self.width,self.speed,
@@ -40,7 +40,7 @@ class obstaclesRow(Group):
             if o.rect.right < 0 or o.rect.left > s.width:
                 self.group.remove(o)
             else:
-                o.update()
+                o.update(dt)
     def draw(self,screen):
         for o in self.group.sprites():
             o.draw(screen)

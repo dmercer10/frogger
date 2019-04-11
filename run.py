@@ -40,17 +40,18 @@ for lily in lilies:
 time = s.time
 last_tick = pygame.time.get_ticks()
 water = [log_row1,log_row2,log_row3,log_row4,turtle_row1,turtle_row2]
-def update_traffic():
+
+def update_traffic(dt):
     for obj in traffic:
-        obj.update()
+        obj.update(dt)
         
 def draw_traffic(screen):
     for obj in traffic:
         obj.draw(screen)
         
-def update_water():
+def update_water(dt):
     for obj in water:
-        obj.update()
+        obj.update(dt)
         
 def draw_water(screen):
     for obj in water:
@@ -77,8 +78,11 @@ def check_lily_collision():
 
 
     
-
+clock = pygame.time.Clock()
 while frog.lives >0 and time > 0:
+    
+    dt = clock.tick()
+    print(dt)
     
     screen.fill(s.bg_color)
     
@@ -97,9 +101,9 @@ while frog.lives >0 and time > 0:
             elif key == pygame.K_RIGHT:frog.move_right()
     
     
-    update_traffic()
+    update_traffic(dt)
     draw_traffic(screen)
-    update_water()
+    update_water(dt)
     draw_water(screen)
     draw_lilies(screen)
     frog.update()

@@ -14,12 +14,12 @@ class Obstacle(Sprite):
         self.rect =     pygame.Rect(self.x,self.y,self.width,s.obstacle_height)
         
         
-    def move(self):
-        self.x += self.speed
+    def move(self,dt):
+        self.x += self.speed * dt
         self.rect.x = self.x
         
-    def update(self):
-        self.move()
+    def update(self,dt):
+        self.move(dt)
     
     def draw(self,screen):
         pygame.draw.rect(screen, self.color, self.rect)
