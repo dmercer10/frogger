@@ -14,9 +14,9 @@ class Frog(Sprite):
         self.riding_speed = 0
         self.lives = s.frog_lives
         
-    def update(self):
+    def update(self, dt):
         if self.riding:
-            self.x += self.riding_speed
+            self.x += self.riding_speed * dt
             self.rect.x = self.x
         if self.check_death():
             self.respawn()

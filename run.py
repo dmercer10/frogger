@@ -33,10 +33,14 @@ turtle_row1 = obRow(s.turtle_width*2,s.turtle_speed,'left', True, s.turtle_color
 turtle_row2 = obRow(s.turtle_width*3,s.turtle_speed,'left', True, s.turtle_color,row[3],s.turtle_freq)
 
 #LilyPads
-lilies = [LilyPad(3*x*s.square_constant - 2.4*s.square_constant,0, 1.5*s.square_constant, (100,100,255)) for x in range(1,6)]
 lilies_group = Group()
-for lily in lilies:
-    lilies_group.add(lily)
+def gen_lily_pads():
+    
+    lilies = [LilyPad(3*x*s.square_constant - 2.4*s.square_constant,0, 1.5*s.square_constant, (100,100,255)) for x in range(1,6)]
+    
+    for lily in lilies:
+        lilies_group.add(lily)
+
 time = s.time
 last_tick = pygame.time.get_ticks()
 water = [log_row1,log_row2,log_row3,log_row4,turtle_row1,turtle_row2]
@@ -80,9 +84,9 @@ def check_lily_collision():
     
 clock = pygame.time.Clock()
 while frog.lives >0 and time > 0:
-    
+    if len(lilies_group.sprites()) == 0:
+        gen_lily_pads()
     dt = clock.tick()
-    print(dt)
     
     screen.fill(s.bg_color)
     
@@ -106,7 +110,7 @@ while frog.lives >0 and time > 0:
     update_water(dt)
     draw_water(screen)
     draw_lilies(screen)
-    frog.update()
+    frog.update(dt)
     frog.draw(screen)
     
     
