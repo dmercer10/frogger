@@ -80,13 +80,21 @@ def check_water_collision():
 def check_lily_collision():
     return pygame.sprite.spritecollide(frog, lilies_group , True)
 
+def genPositions(dt):
+    for x in range(50000):
+        update_traffic(dt)
+        update_water(dt)
 
-    
+
 clock = pygame.time.Clock()
+start = True
 while frog.lives >0 and time > 0:
     if len(lilies_group.sprites()) == 0:
         gen_lily_pads()
     dt = clock.tick()
+    
+    if start: genPositions(dt)
+    start = False
     
     screen.fill(s.bg_color)
     

@@ -1,5 +1,9 @@
-fix movement
-fix riding movement
-fix lily pad
-sprites
+fix movement - done
+fix riding movement - done
+fix lily pad - done
+sprites 
 animation
+score system
+speed balancing
+fix spawn locations of objects
+ 
