@@ -1,9 +1,10 @@
 fix movement - done
 fix riding movement - done
 fix lily pad - done
-sprites 
-animation
+Write a movables class to act as a super class to all the moving objects.
 score system
 speed balancing
 fix spawn locations of objects
+sprites
+animation
  

@@ -5,12 +5,13 @@ from frog import Frog
 from obstacle import Obstacle
 from rowOfObstacles import obstaclesRow as obRow
 from lilypad import LilyPad
+
+'''Initialize game board and game mechanics.'''
 pygame.init()
 myfont = pygame.font.SysFont('lucidaconsole', 50)
 pygame.display.set_caption('Frogger')
 screen = pygame.display.set_mode(s.size)
 row = {x+1:s.square_constant*x for x in range(s.numRows)}
-print(row)
 frog = Frog(screen.get_rect().centery,s.width-s.square_constant-s.spacing_constant,s.frog_size)
 pygame.draw.rect(screen,(0,0,255), pygame.Rect(0,0,s.width,s.square_constant*(s.numWaterRows+1)))
 
@@ -45,6 +46,7 @@ time = s.time
 last_tick = pygame.time.get_ticks()
 water = [log_row1,log_row2,log_row3,log_row4,turtle_row1,turtle_row2]
 
+'''Initialize methods to update and draw objects onto the screen.'''
 def update_traffic(dt):
     for obj in traffic:
         obj.update(dt)
@@ -88,6 +90,8 @@ def genPositions(dt):
 
 clock = pygame.time.Clock()
 start = True
+
+'''Game loop'''
 while frog.lives >0 and time > 0:
     if len(lilies_group.sprites()) == 0:
         gen_lily_pads()
